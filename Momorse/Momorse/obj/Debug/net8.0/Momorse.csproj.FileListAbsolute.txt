@@ -1,0 +1,14 @@
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\bin\Debug\net8.0\Momorse.exe
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\bin\Debug\net8.0\Momorse.deps.json
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\bin\Debug\net8.0\Momorse.runtimeconfig.json
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\bin\Debug\net8.0\Momorse.dll
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\bin\Debug\net8.0\Momorse.pdb
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.AssemblyInfoInputs.cache
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.AssemblyInfo.cs
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.csproj.CoreCompileInputs.cache
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.dll
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\refint\Momorse.dll
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.pdb
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.genruntimeconfig.cache
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\ref\Momorse.dll
