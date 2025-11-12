@@ -12,3 +12,4 @@ C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\refin
 C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.pdb
 C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.genruntimeconfig.cache
 C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\ref\Momorse.dll
+C:\Users\pd01wvj\Documents\GitHub\MoMorse\Momorse\Momorse\obj\Debug\net8.0\Momorse.sourcelink.json

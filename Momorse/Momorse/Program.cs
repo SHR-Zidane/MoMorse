@@ -19,7 +19,7 @@ namespace MoMorse
                 ConsoleKeyInfo key = Console.ReadKey();
                 try
                 {
-                    ENTRY.Add(key.KeyChar);
+                    ENTRY.Add(char.ToUpper(key.KeyChar));
                     if (key.Key == ConsoleKey.Enter)
                     {
                         break;
@@ -48,7 +48,7 @@ namespace MoMorse
                 Console.Write(ENTRYM[i]);
             }
 
-            
+            Console.ReadLine();
         }
     }
 }
