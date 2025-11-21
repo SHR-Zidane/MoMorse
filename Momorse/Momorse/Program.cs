@@ -65,7 +65,22 @@ namespace MoMorse
                                     }
                                     
                                 }
+                                else if (Enter.Key == ConsoleKey.Backspace)
+                                {
+                                    continue;
+                                }
+                            }
+                            else if (key.Key == ConsoleKey.D2)
+                            {
+                                Enter = Console.ReadKey();
+                                if (Enter.Key == ConsoleKey.Enter)
+                                {
 
+                                }
+                                else if (Enter.Key == ConsoleKey.Backspace)
+                                {
+                                    continue;
+                                }
                             }
                         }
                     }
