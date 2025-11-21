@@ -6,7 +6,7 @@ namespace MoMorse
     {
         static void Main(string[] args)
         {
-            int EntryN;
+            int entryN = 0;
             ConsoleKeyInfo Enter;
             List<char> ENTRY = new List<char>();
             string[] LISTM = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
@@ -46,20 +46,26 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
+                                    Decabin(key, entryN, ints);
                                     while (true)
                                     {
-                                        //Console.WriteLine("Entrez un nombre décimal à convertir en binaire");
-                                        //try
-                                        //{
-                                        //    bool isNumber = int.TryParse(Console.ReadLine(), out EntryN);
-                                        //    for (int i = 0; 
-                                        //}
-                                        //catch (Exception e)
-                                        //{
-                                        //    Console.WriteLine("Entrez uniquement des chiffres");
-                                        //}
+                                        Enter = Console.ReadKey();
+                                        if (Enter.Key == ConsoleKey.Escape)
+                                        {
+                                            Environment.Exit(0);
+                                        }
+                                        else if (Enter.Key == ConsoleKey.Enter)
+                                        {
+                                            if (Enter.Key == ConsoleKey.Enter)
+                                            {
+                                                Console.Clear();
+                                                Main(args);
+                                            }
+                                        }
                                     }
+                                    
                                 }
+
                             }
                         }
                     }
@@ -120,6 +126,37 @@ namespace MoMorse
                 }
 
                 Console.ReadLine();
+            }
+            static void Decabin(ConsoleKeyInfo key, int entry, List<int> ints)
+            {
+                while (true)
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("Entrez un nombre décimal à convertir en binaire");
+                        try
+                        {
+                            entry = int.Parse(Console.ReadLine());
+                            while (entry != 0)
+                            {
+                                ints.Add(entry % 2);
+                                entry = entry / 2;
+                            }
+                            break;
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Entrez uniquement des chiffres Erreur : ", e.Message);
+                        }
+                        Console.Clear();
+                    }
+                    for (int i = ints.Count - 1; i >= 0; i--)
+                    {
+                        Console.Write(ints[i]);
+                    }
+                    Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
+                    break;
+                }
             }
         }
     }
