@@ -112,16 +112,15 @@ namespace MoMorse
                                 {
                                     ENTRY.RemoveAt(ENTRY.Count - 1);
                                 }
-                                Console.Clear();
-                                Console.WriteLine("=== Convertisseur de texte en code Morse ===");
-                                Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
                             }
                             else if (key.Key != ConsoleKey.Backspace)
                             {
                                 ENTRY.Add(char.ToUpper(key.KeyChar));
                             }
-                                
                         }
+                        Console.Clear();
+                        Console.WriteLine("=== Convertisseur de texte en code Morse ===");
+                        Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
                         for (int i = 0; i < ENTRY.Count; i++)
                         {
                             Console.Write(ENTRY[i]);
