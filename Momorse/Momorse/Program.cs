@@ -95,25 +95,36 @@ namespace MoMorse
                 {
                     try
                     {
+                        key = Console.ReadKey(true);
                         if (key.Key == ConsoleKey.Enter)
                         {
                             break;
                         }
-                        else if (key.Key == ConsoleKey.Backspace)
+                        else if (key.Key != ConsoleKey.Enter)
                         {
-                            ENTRY.RemoveAt(ENTRY.Count - 1);
-                            Console.Clear();
-                            Console.WriteLine("=== Convertisseur de texte en code Morse ===");
-                            Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
-                            for (int i = 0; i < ENTRY.Count; i++)
+                            if (key.Key == ConsoleKey.Backspace)
                             {
-                                Console.Write(ENTRY[i]);
+                                if(ENTRY.Count == 0)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    ENTRY.RemoveAt(ENTRY.Count - 1);
+                                }
+                                Console.Clear();
+                                Console.WriteLine("=== Convertisseur de texte en code Morse ===");
+                                Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
                             }
+                            else if (key.Key != ConsoleKey.Backspace)
+                            {
+                                ENTRY.Add(char.ToUpper(key.KeyChar));
+                            }
+                                
                         }
-                        else if (key.Key != ConsoleKey.Backspace || key.Key != ConsoleKey.Enter)
+                        for (int i = 0; i < ENTRY.Count; i++)
                         {
-                            key = Console.ReadKey();
-                            ENTRY.Add(char.ToUpper(key.KeyChar));
+                            Console.Write(ENTRY[i]);
                         }
                     }
                     catch
