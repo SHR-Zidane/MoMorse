@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sOL9VlENj1M=",
+  "dgSpecHash": "UwR8WMYJlS8=",
   "success": true,
-  "projectFilePath": "/home/zidane/Documents/GitHub/MoMorse/Momorse/Momorse/Momorse.csproj",
-  "expectedPackageFiles": [
-    "/home/zidane/.nuget/packages/microsoft.netcore.app.ref/8.0.20/microsoft.netcore.app.ref.8.0.20.nupkg.sha512",
-    "/home/zidane/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.20/microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512",
-    "/home/zidane/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.20/microsoft.netcore.app.host.linux-x64.8.0.20.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\pd01wvj\\Documents\\GitHub\\MoMorse\\Momorse\\Momorse\\Momorse.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

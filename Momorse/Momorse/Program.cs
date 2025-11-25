@@ -30,6 +30,22 @@ namespace MoMorse
                     {
                         Console.Clear();
                         Morse(ENTRY, key, ENTRYM, LISTA, LISTM);
+                        while (true)
+                        {
+                            Enter = Console.ReadKey();
+                            if (Enter.Key == ConsoleKey.Escape)
+                            {
+                                Environment.Exit(0);
+                            }
+                            else if (Enter.Key == ConsoleKey.Enter)
+                            {
+                                if (Enter.Key == ConsoleKey.Enter)
+                                {
+                                    Console.Clear();
+                                    Main(args);
+                                }
+                            }
+                        }
                     }
                 }
                 else if(key.Key == ConsoleKey.D2)
@@ -77,75 +93,22 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
-                                    Console.Clear();
-                                    Console.WriteLine("Entrez un nombre binaire à convertir en décimal");
+                                    Binadec(Enter, ints, entryN, power, power2);
                                     while (true)
                                     {
-                                        
-                                            try
-                                            {
-                                                while (true)
-                                                {
-
-
-                                                    Enter = Console.ReadKey();
-                                                    if (Enter.Key != ConsoleKey.D0 && Enter.Key != ConsoleKey.D1 && Enter.Key != ConsoleKey.Backspace && Enter.Key != ConsoleKey.Enter)
-                                                    {
-                                                        throw new Exception();
-                                                    }
-                                                    else if (Enter.Key == ConsoleKey.Enter)
-                                                    {
-                                                        break;
-                                                    }
-                                                    else if (Enter.Key == ConsoleKey.Backspace)
-                                                    {
-                                                        if (ints.Count == 0)
-                                                        {
-                                                            continue;
-                                                        }
-                                                        else
-                                                        {
-                                                            ints.RemoveAt(ints.Count - 1);
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        ints.Add(Enter.Key - ConsoleKey.D0);
-                                                    }
-
-                                                    Console.Clear();
-                                                    Console.WriteLine("Entrez un nombre binaire à convertir en décimal");
-                                                    for (int i = 0; i < ints.Count; i++)
-                                                    {
-                                                        Console.Write(ints[i]);
-                                                    }
-                                                }
-                                            }
-                                            catch (Exception e)
-                                            {
-                                                Console.WriteLine("Entrez uniquement des chiffres binaires Erreur : ",
-                                                    e.Message);
-                                            }
-
-                                            Console.Clear();
-                                        
-                                        for (int i = ints.Count - 1; i >= 0; i--)
+                                        Enter = Console.ReadKey();
+                                        if (Enter.Key == ConsoleKey.Escape)
                                         {
-                                            entryN += ints[i] * power;
-                                            power = 1;
-                                            if (power2 < 2)
-                                            {
-                                                power2++; 
-                                            }
-                                            else
-                                            {
-                                                power2 *= 2;
-                                            }
-                                            power *= 2 * power2;
+                                            Environment.Exit(0);
                                         }
-                                        Console.WriteLine(entryN);
-                                        Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
-                                        break;
+                                        else if (Enter.Key == ConsoleKey.Enter)
+                                        {
+                                            if (Enter.Key == ConsoleKey.Enter)
+                                            {
+                                                Console.Clear();
+                                                Main(args);
+                                            }
+                                        }
                                     }
                                 }
                                 else if (Enter.Key == ConsoleKey.Backspace)
@@ -220,8 +183,7 @@ namespace MoMorse
                     Console.Write(ENTRYM[i]);
                     Console.Write(' '); 
                 }
-
-                Console.ReadLine();
+                Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
             }
             static void Decabin(ConsoleKeyInfo key, int entry, List<int> ints)
             {
@@ -250,6 +212,79 @@ namespace MoMorse
                     {
                         Console.Write(ints[i]);
                     }
+                    Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
+                    break;
+                }
+            }
+            static void Binadec(ConsoleKeyInfo Enter, List<int> ints, int entryN, int power, int power2) 
+            {
+                Console.Clear();
+                Console.WriteLine("Entrez un nombre binaire à convertir en décimal");
+                while (true)
+                {
+
+                    try
+                    {
+                        while (true)
+                        {
+
+
+                            Enter = Console.ReadKey();
+                            if (Enter.Key != ConsoleKey.D0 && Enter.Key != ConsoleKey.D1 && Enter.Key != ConsoleKey.Backspace && Enter.Key != ConsoleKey.Enter)
+                            {
+                                throw new Exception();
+                            }
+                            else if (Enter.Key == ConsoleKey.Enter)
+                            {
+                                break;
+                            }
+                            else if (Enter.Key == ConsoleKey.Backspace)
+                            {
+                                if (ints.Count == 0)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    ints.RemoveAt(ints.Count - 1);
+                                }
+                            }
+                            else
+                            {
+                                ints.Add(Enter.Key - ConsoleKey.D0);
+                            }
+
+                            Console.Clear();
+                            Console.WriteLine("Entrez un nombre binaire à convertir en décimal");
+                            for (int i = 0; i < ints.Count; i++)
+                            {
+                                Console.Write(ints[i]);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Entrez uniquement des chiffres binaires Erreur : ",
+                            e.Message);
+                    }
+
+                    Console.Clear();
+
+                    for (int i = ints.Count - 1; i >= 0; i--)
+                    {
+                        entryN += ints[i] * power;
+                        power = 1;
+                        if (power2 < 2)
+                        {
+                            power2++;
+                        }
+                        else
+                        {
+                            power2 *= 2;
+                        }
+                        power *= 2 * power2;
+                    }
+                    Console.WriteLine(entryN);
                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                     break;
                 }
