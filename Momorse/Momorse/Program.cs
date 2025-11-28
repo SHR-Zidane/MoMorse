@@ -16,6 +16,7 @@ namespace MoMorse
             char[] LISTA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' '];
             List<string> ENTRYM = new List<string>();
             List<int> ints = new List<int>();
+            List<int> octoints = new List<int>(); 
             Console.WriteLine("=== Couteau Suisse - Utilitaires ===");
             Console.WriteLine("1. Convertir du texte en code Morse");
             Console.WriteLine("2. Convertir des nombres entre différentes bases (Décimal <> Binaire <> Octal)");
@@ -93,7 +94,8 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
-                                    Binadec(Enter, ints, entryN, power, power2);
+                                    Console.WriteLine(Binadec(Enter, ints, entryN, power, power2));
+                                    Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
                                         Enter = Console.ReadKey();
@@ -114,6 +116,32 @@ namespace MoMorse
                                 else if (Enter.Key == ConsoleKey.Backspace)
                                 {
                                     continue;
+                                }
+                            }
+                            else if (key.Key == ConsoleKey.D3)
+                            {
+                                Enter = Console.ReadKey();
+                                if (Enter.Key == ConsoleKey.Enter)
+                                {
+                                    Console.WriteLine("Entrez un nombre binaire à convertir en octal");
+                                    Binaoct(Binadec(Enter, ints, entryN, power, power2), octoints);
+                                    Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
+                                    while (true)
+                                    {
+                                        Enter = Console.ReadKey();
+                                        if (Enter.Key == ConsoleKey.Escape)
+                                        {
+                                            Environment.Exit(0);
+                                        }
+                                        else if (Enter.Key == ConsoleKey.Enter)
+                                        {
+                                            if (Enter.Key == ConsoleKey.Enter)
+                                            {
+                                                Console.Clear();
+                                                Main(args);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -216,10 +244,10 @@ namespace MoMorse
                     break;
                 }
             }
-            static void Binadec(ConsoleKeyInfo Enter, List<int> ints, int entryN, int power, int power2) 
+            static int Binadec(ConsoleKeyInfo Enter, List<int> ints, int entryN, int power, int power2) 
             {
                 Console.Clear();
-                Console.WriteLine("Entrez un nombre binaire à convertir en décimal");
+                Console.WriteLine("Entrez un nombre binaire");
                 while (true)
                 {
 
@@ -255,7 +283,7 @@ namespace MoMorse
                             }
 
                             Console.Clear();
-                            Console.WriteLine("Entrez un nombre binaire à convertir en décimal");
+                            Console.WriteLine("Entrez un nombre binaire");
                             for (int i = 0; i < ints.Count; i++)
                             {
                                 Console.Write(ints[i]);
@@ -284,9 +312,19 @@ namespace MoMorse
                         }
                         power *= 2 * power2;
                     }
-                    Console.WriteLine(entryN);
-                    Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
-                    break;
+                    return entryN;
+                }
+            }
+            static void Binaoct(int EntryD, List<int> ints)
+            {
+                while (EntryD != 0)
+                {
+                    ints.Add(EntryD % 8);
+                    EntryD /= 8;
+                }
+                for (int i = ints.Count - 1; i >= 0; i--)
+                {
+                    Console.Write(ints[i]);
                 }
             }
         }
