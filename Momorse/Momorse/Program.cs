@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MoMorse
 {
@@ -123,8 +124,34 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
-                                    Console.WriteLine("Entrez un nombre binaire à convertir en octal");
+                                    Console.WriteLine("Entrez un nombre binaire à convertir en octal \n");
                                     Binaoct(Binadec(Enter, ints, entryN, power, power2), octoints);
+                                    Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
+                                    while (true)
+                                    {
+                                        Enter = Console.ReadKey();
+                                        if (Enter.Key == ConsoleKey.Escape)
+                                        {
+                                            Environment.Exit(0);
+                                        }
+                                        else if (Enter.Key == ConsoleKey.Enter)
+                                        {
+                                            if (Enter.Key == ConsoleKey.Enter)
+                                            {
+                                                Console.Clear();
+                                                Main(args);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (key.Key == ConsoleKey.D4)
+                            {
+                                Enter = Console.ReadKey();
+                                if (Enter.Key == ConsoleKey.Enter)
+                                {
+                                    Console.WriteLine("Entrez un nombre octal à convertir en binaire");
+                                    
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -155,44 +182,42 @@ namespace MoMorse
 
                 while (true)
                 {
+                    key = Console.ReadKey(true);
+
                     try
                     {
-                        key = Console.ReadKey(true);
                         if (key.Key == ConsoleKey.Enter)
                         {
                             break;
                         }
-                        else if (key.Key != ConsoleKey.Enter)
+                        else if (key.Key == ConsoleKey.Backspace)
                         {
-                            if (key.Key == ConsoleKey.Backspace)
+                            if (ENTRY.Count > 0)
+                                ENTRY.RemoveAt(ENTRY.Count - 1);
+                        }
+                        else
+                        {
+                            char c = char.ToUpper(key.KeyChar);
+
+                            if (!char.IsLetter(c) && c != ' ')
                             {
-                                if(ENTRY.Count == 0)
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    ENTRY.RemoveAt(ENTRY.Count - 1);
-                                }
+                                Console.WriteLine("\nCaractère invalide (lettres A-Z seulement)");
+                                continue; 
                             }
-                            else if (key.Key != ConsoleKey.Backspace)
-                            {
-                                ENTRY.Add(char.ToUpper(key.KeyChar));
-                            }
+
+                            ENTRY.Add(c);
                         }
                         Console.Clear();
                         Console.WriteLine("=== Convertisseur de texte en code Morse ===");
                         Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
+
                         for (int i = 0; i < ENTRY.Count; i++)
-                        {
                             Console.Write(ENTRY[i]);
-                        }
                     }
                     catch
                     {
-                        Console.WriteLine("Veuillez écrire uniquement des mots");
+                        Console.WriteLine("Erreur : veuillez écrire uniquement des mots.");
                     }
-
                 }
                 for (int i = 0; i < ENTRY.Count; i++)
                 {
@@ -204,13 +229,13 @@ namespace MoMorse
                         }
                     }
                 }
-
                 Console.WriteLine("\nRésultat en Morse : ");
                 for (int i = 0; i < ENTRYM.Count; i++)
                 {
                     Console.Write(ENTRYM[i]);
-                    Console.Write(' '); 
+                    Console.Write(' ');
                 }
+
                 Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
             }
             static void Decabin(ConsoleKeyInfo key, int entry, List<int> ints)
@@ -219,7 +244,7 @@ namespace MoMorse
                 {
                     while (true)
                     {
-                        Console.WriteLine("Entrez un nombre décimal à convertir en binaire");
+                        Console.WriteLine("Entrez un nombre décimal à convertir en binaire : ");
                         try
                         {
                             entry = int.Parse(Console.ReadLine());
@@ -232,9 +257,9 @@ namespace MoMorse
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Entrez uniquement des chiffres Erreur : ", e.Message);
+                            Console.Clear();
+                            Console.WriteLine("Entrez uniquement des chiffres");
                         }
-                        Console.Clear();
                     }
                     for (int i = ints.Count - 1; i >= 0; i--)
                     {
@@ -246,74 +271,59 @@ namespace MoMorse
             }
             static int Binadec(ConsoleKeyInfo Enter, List<int> ints, int entryN, int power, int power2) 
             {
-                Console.Clear();
-                Console.WriteLine("Entrez un nombre binaire");
                 while (true)
                 {
-
-                    try
+                    Console.Write("\rEntrez un nombre binaire : ");
+                    for (int i = 0; i < ints.Count; i++)
                     {
-                        while (true)
+                        Console.Write(ints[i]);
+                    }
+                    Enter = Console.ReadKey();
+                    if (Enter.Key == ConsoleKey.Enter)
+                    {
+                        for (int i = ints.Count - 1; i >= 0; i--)
                         {
-
-
-                            Enter = Console.ReadKey();
-                            if (Enter.Key != ConsoleKey.D0 && Enter.Key != ConsoleKey.D1 && Enter.Key != ConsoleKey.Backspace && Enter.Key != ConsoleKey.Enter)
+                            entryN += ints[i] * power;
+                            power = 1;
+                            if (power2 < 2)
                             {
-                                throw new Exception();
-                            }
-                            else if (Enter.Key == ConsoleKey.Enter)
-                            {
-                                break;
-                            }
-                            else if (Enter.Key == ConsoleKey.Backspace)
-                            {
-                                if (ints.Count == 0)
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    ints.RemoveAt(ints.Count - 1);
-                                }
+                                power2++;
                             }
                             else
                             {
-                                ints.Add(Enter.Key - ConsoleKey.D0);
+                                power2 *= 2;
                             }
-
-                            Console.Clear();
-                            Console.WriteLine("Entrez un nombre binaire");
-                            for (int i = 0; i < ints.Count; i++)
-                            {
-                                Console.Write(ints[i]);
-                            }
+                            power *= 2 * power2;
                         }
+                        break;
                     }
-                    catch (Exception e)
+                    else if (Enter.Key == ConsoleKey.Backspace)
                     {
-                        Console.WriteLine("Entrez uniquement des chiffres binaires Erreur : ",
-                            e.Message);
-                    }
-
-                    Console.Clear();
-
-                    for (int i = ints.Count - 1; i >= 0; i--)
-                    {
-                        entryN += ints[i] * power;
-                        power = 1;
-                        if (power2 < 2)
+                        if (ints.Count == 0)
                         {
-                            power2++;
+                            continue;
                         }
                         else
                         {
-                            power2 *= 2;
+                            Console.Clear();
+                            ints.RemoveAt(ints.Count - 1);
                         }
-                        power *= 2 * power2;
                     }
-                    return entryN;
+                    else if (Enter.Key == ConsoleKey.D0 || Enter.Key == ConsoleKey.D1)
+                    {
+                        ints.Add(Enter.Key - ConsoleKey.D0);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Format incorrect");
+                        continue;
+                    }
+
                 }
+                    return entryN;
+                
             }
             static void Binaoct(int EntryD, List<int> ints)
             {
