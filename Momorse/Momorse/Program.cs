@@ -124,7 +124,6 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
-                                    Console.WriteLine("Entrez un nombre binaire à convertir en octal \n");
                                     Binaoct(Binadec(Enter, ints, entryN, power, power2), octoints);
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
@@ -150,8 +149,6 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
-                                    Console.WriteLine("Entrez un nombre octal à convertir en binaire");
-                                    
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -273,7 +270,7 @@ namespace MoMorse
             {
                 while (true)
                 {
-                    Console.Write("\rEntrez un nombre binaire : ");
+                    Console.WriteLine("\rEntrez un nombre binaire : ");
                     for (int i = 0; i < ints.Count; i++)
                     {
                         Console.Write(ints[i]);
@@ -322,7 +319,8 @@ namespace MoMorse
                     }
 
                 }
-                    return entryN;
+                Console.WriteLine();
+                return entryN;
                 
             }
             static void Binaoct(int EntryD, List<int> ints)
