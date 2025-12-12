@@ -21,7 +21,7 @@ namespace MoMorse
             Console.WriteLine("=== Couteau Suisse - Utilitaires ===");
             Console.WriteLine("1. Convertir du texte en code Morse");
             Console.WriteLine("2. Convertir des nombres entre différentes bases (Décimal <> Binaire <> Octal)");
-            Console.WriteLine("3. (à venir)");
+            Console.WriteLine("3. Convertir du texte en code César");
             while (true)
             {
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -167,6 +167,31 @@ namespace MoMorse
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (key.Key == ConsoleKey.D3)
+                {
+                    Enter = Console.ReadKey();
+                    if (Enter.Key == ConsoleKey.Enter)
+                    {
+                        Console.Clear();
+                        Caesar(LISTA, ENTRY, key, entryN);
+                        while (true)
+                        {
+                            Enter = Console.ReadKey();
+                            if (Enter.Key == ConsoleKey.Escape)
+                            {
+                                Environment.Exit(0);
+                            }
+                            else if (Enter.Key == ConsoleKey.Enter)
+                            {
+                                if (Enter.Key == ConsoleKey.Enter)
+                                {
+                                    Console.Clear();
+                                    Main(args);
                                 }
                             }
                         }
@@ -424,6 +449,89 @@ namespace MoMorse
                         Console.Write(octoints[i]);
                     }
                     continue;
+                }
+            }
+        }
+        static void Caesar(char[] LISTA, List<char> ENTRY, ConsoleKeyInfo key, int entry)
+        {
+            Console.WriteLine("=== Convertisseur de texte en code César ===");
+            Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
+            while (true)
+            {
+                key = Console.ReadKey(true);
+
+                try
+                {
+                    if (key.Key == ConsoleKey.Enter)
+                    {
+                        break;
+                    }
+                    else if (key.Key == ConsoleKey.Backspace)
+                    {
+                        if (ENTRY.Count > 0)
+                            ENTRY.RemoveAt(ENTRY.Count - 1);
+                    }
+                    else
+                    {
+                        char c = char.ToUpper(key.KeyChar);
+
+                        if (!char.IsLetter(c) && c != ' ')
+                        {
+                            Console.WriteLine("\nCaractère invalide (lettres A-Z seulement)");
+                            continue;
+                        }
+
+                        ENTRY.Add(c);
+                    }
+                    Console.Clear();
+                    Console.WriteLine("=== Convertisseur de texte en code César ===");
+                    Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
+
+                    for (int i = 0; i < ENTRY.Count; i++)
+                    {
+                        Console.Write(ENTRY[i]);
+                    }
+                }
+
+                catch
+                {
+                    Console.WriteLine("Erreur : veuillez écrire uniquement des mots.");
+                }
+            }
+            while (true)
+            {
+                Console.WriteLine("\nMettez une clé pour le décalage (chiffres)");
+                try
+                {
+                    entry = int.Parse(Console.ReadLine());
+                    for (int i = 0; i <= ENTRY.Count; i++)
+                    {
+                        for (int j = 0; j < LISTA.Length; j++)
+                        {
+                            if (ENTRY[i] == ' ')
+                            {
+                                Console.Write(' ');
+                                continue;
+                            }
+                            else if (ENTRY[i] == LISTA[j])
+                            {
+                                if (j + 3 > 26)
+                                {
+                                    j = j + 3 - 26;
+
+                                }
+                                Console.Write(LISTA[j + entry]);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
+                }
+                catch
+                {
+                    Console.Clear();
+                    Console.WriteLine("Mettez uniquement des chiffres pour la clé de décalage");
                 }
             }
         }

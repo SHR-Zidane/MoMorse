@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Momorse")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e876a7bd26f6e3f9f5c9ae4b1d4e801b049ab735")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9768e45ea4b80e80257967f4fdc0e6df057055b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Momorse")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Momorse")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
