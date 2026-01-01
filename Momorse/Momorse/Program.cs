@@ -7,8 +7,6 @@ namespace MoMorse
     {
         static void Main(string[] args)
         {
-            int power = 1;
-            int power2 = 0;
             int entryN = 0;
             ConsoleKeyInfo Enter;
             List<char> ENTRY = new List<char>();
@@ -92,6 +90,7 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
+                                    Console.WriteLine(Binadec(ints));
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -174,7 +173,7 @@ namespace MoMorse
                     if (Enter.Key == ConsoleKey.Enter)
                     {
                         Console.Clear();
-                        //Caesar(LISTA, ENTRY, key, entryN);
+                        Caesar(ENTRY, entryN);
                         while (true)
                         {
                             Enter = Console.ReadKey();
@@ -195,20 +194,29 @@ namespace MoMorse
                 }
             }
         }
+
         static void Morse(List<char> ENTRY, List<string> ENTRYM)
         {
             ENTRY.Clear();
             ENTRYM.Clear();
-            
-            string[] LISTM = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
-                "-.", "---", ".--.", "--.-", ".-.", "..." , "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----",".----","..---","...--","....-",".....", "-....", "--...", "---..", "----.", "/"];
-            char[] LISTA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '];
+
+            string[] LISTM =
+            [
+                ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
+                "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----",
+                ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", "/"
+            ];
+            char[] LISTA =
+            [
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+                'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '
+            ];
             Console.Clear();
             Console.WriteLine("=== Convertisseur de texte en code Morse ===");
             Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z, chiffres 0-9) :\n");
 
             while (true)
-            { 
+            {
                 ConsoleKeyInfo key = Console.ReadKey(true);
                 if (key.Key == ConsoleKey.Enter && ENTRY.Count > 0)
                 {
@@ -224,7 +232,7 @@ namespace MoMorse
                     char c = char.ToUpper(key.KeyChar);
                     if (char.IsLetterOrDigit(c) || c == ' ')
                     {
-                        ENTRY.Add(c);   
+                        ENTRY.Add(c);
                     }
                     else
                     {
@@ -232,12 +240,13 @@ namespace MoMorse
                         continue;
                     }
                 }
-                
+
                 Console.Clear();
                 Console.WriteLine("=== Convertisseur de texte en code Morse ===");
                 Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z, chiffres 0-9) :\n");
                 Console.Write(string.Join("", ENTRY));
             }
+
             for (int i = 0; i < ENTRY.Count; i++)
             {
                 for (int j = 0; j < LISTA.Length; j++)
@@ -248,14 +257,17 @@ namespace MoMorse
                     }
                 }
             }
+
             Console.WriteLine("\nRésultat en Morse : ");
             Console.WriteLine(string.Join(" ", ENTRYM));
 
             Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
         }
+
         static void Decabin(ConsoleKeyInfo key, int entry, List<int> ints)
         {
             ints.Clear();
+            Console.Clear();
             while (true)
             {
                 while (true)
@@ -269,6 +281,7 @@ namespace MoMorse
                             ints.Add(entry % 2);
                             entry = entry / 2;
                         }
+
                         break;
                     }
                     catch (Exception e)
@@ -277,14 +290,17 @@ namespace MoMorse
                         Console.WriteLine("Entrez uniquement des chiffres");
                     }
                 }
+
                 for (int i = ints.Count - 1; i >= 0; i--)
                 {
                     Console.Write(ints[i]);
                 }
+
                 Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                 break;
             }
         }
+
         static int Binadec(List<int> ints)
         {
             int entryN = 0;
@@ -293,7 +309,7 @@ namespace MoMorse
 
             while (true)
             {
-                Console.WriteLine("\rEntrez un nombre binaire : ");
+                Console.Clear();
                 Console.WriteLine("Entrez un nombre binaire (0 ou 1) :");
                 for (int i = 0; i < ints.Count; i++)
                 {
@@ -329,6 +345,7 @@ namespace MoMorse
                     {
                         entryN += power;
                     }
+
                     power *= 2;
                 }
             }
@@ -337,9 +354,10 @@ namespace MoMorse
                 Console.WriteLine("Erreur de calcul.");
                 return 0;
             }
-            
+
             return entryN;
         }
+
         static void Binaoct(int EntryD, List<int> ints)
         {
             while (EntryD != 0)
@@ -347,18 +365,23 @@ namespace MoMorse
                 ints.Add(EntryD % 8);
                 EntryD /= 8;
             }
+
             for (int i = ints.Count - 1; i >= 0; i--)
             {
                 Console.Write(ints[i]);
             }
         }
+
         static void Octabin(ConsoleKeyInfo Enter, List<int> octoints)
         {
+            octoints.Clear();
+            Console.Clear();
             Console.WriteLine("\rEntrez un nombre octal : ");
             for (int i = 0; i < octoints.Count; i++)
             {
                 Console.Write(octoints[i]);
             }
+
             while (true)
             {
                 Enter = Console.ReadKey();
@@ -395,6 +418,7 @@ namespace MoMorse
                                 break;
                         }
                     }
+
                     Console.WriteLine("\nRésultat en binaire : " + binaryResult);
                     break;
                 }
@@ -407,8 +431,6 @@ namespace MoMorse
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("=== Convertisseur de bases ===");
-                        Console.WriteLine("1. Décimal > Binaire\r\n2. Binaire > Décimal\r\n3. Binaire > Octal\r\n4. Octal > Binaire\n\n");
                         Console.WriteLine("\rEntrez un nombre octal : ");
                         octoints.RemoveAt(octoints.Count - 1);
                         for (int i = 0; i < octoints.Count; i++)
@@ -421,8 +443,6 @@ namespace MoMorse
                 {
                     octoints.Add(Enter.Key - ConsoleKey.D0);
                     Console.Clear();
-                    Console.WriteLine("=== Convertisseur de bases ===");
-                    Console.WriteLine("1. Décimal > Binaire\r\n2. Binaire > Décimal\r\n3. Binaire > Octal\r\n4. Octal > Binaire\n\n");
                     Console.WriteLine("\rEntrez un nombre octal : ");
                     for (int i = 0; i < octoints.Count; i++)
                     {
@@ -438,92 +458,79 @@ namespace MoMorse
                     {
                         Console.Write(octoints[i]);
                     }
+
                     continue;
                 }
             }
         }
-        static void Caesar(char[] LISTA, List<char> ENTRY, ConsoleKeyInfo key, int entry)
+
+        static void Caesar(List<char> ENTRY, int entry)
+        { 
+        char[] LISTA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        ENTRY.Clear();
+        Console.Clear();
+        Console.WriteLine("=== Convertisseur de texte en code César ===");
+        Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
+    
+        while (true)
         {
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Enter && ENTRY.Count > 0)
+            {
+                break;
+            }
+            else if (key.Key == ConsoleKey.Backspace && ENTRY.Count > 0)
+            {
+                ENTRY.RemoveAt(ENTRY.Count - 1);
+            }
+            else
+            {
+                char c = char.ToUpper(key.KeyChar);
+                if (char.IsLetter(c) || c == ' ')
+                {
+                    ENTRY.Add(c);
+                }
+            }
+            Console.Clear();
             Console.WriteLine("=== Convertisseur de texte en code César ===");
             Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
-            while (true)
+            Console.Write(string.Join("", ENTRY));
+        }
+    
+        while (true)
+        {
+            Console.WriteLine("\n\nEntrez la clé de décalage (chiffre) :");
+            try
             {
-                key = Console.ReadKey(true);
-
-                try
+                entry = int.Parse(Console.ReadLine());
+                Console.Write("\nRésultat : ");
+                for (int i = 0; i < ENTRY.Count; i++)
                 {
-                    if (key.Key == ConsoleKey.Enter)
+                    if (ENTRY[i] == ' ')
                     {
-                        break;
+                        Console.Write(' ');
+                        continue;
                     }
-                    else if (key.Key == ConsoleKey.Backspace)
+    
+                    for (int j = 0; j < LISTA.Length; j++)
                     {
-                        if (ENTRY.Count > 0)
-                            ENTRY.RemoveAt(ENTRY.Count - 1);
-                    }
-                    else
-                    {
-                        char c = char.ToUpper(key.KeyChar);
-
-                        if (!char.IsLetter(c) && c != ' ')
+                        if (ENTRY[i] == LISTA[j])
                         {
-                            Console.WriteLine("\nCaractère invalide (lettres A-Z seulement)");
-                            continue;
-                        }
-
-                        ENTRY.Add(c);
-                    }
-                    Console.Clear();
-                    Console.WriteLine("=== Convertisseur de texte en code César ===");
-                    Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
-
-                    for (int i = 0; i < ENTRY.Count; i++)
-                    {
-                        Console.Write(ENTRY[i]);
-                    }
-                }
-
-                catch
-                {
-                    Console.WriteLine("Erreur : veuillez écrire uniquement des mots.");
-                }
-            }
-            while (true)
-            {
-                Console.WriteLine("\nMettez une clé pour le décalage (chiffres)");
-                try
-                {
-                    entry = int.Parse(Console.ReadLine());
-                    for (int i = 0; i <= ENTRY.Count; i++)
-                    {
-                        for (int j = 0; j < LISTA.Length; j++)
-                        {
-                            if (ENTRY[i] == ' ')
-                            {
-                                Console.Write(' ');
-                                continue;
-                            }
-                            else if (ENTRY[i] == LISTA[j])
-                            {
-                                if (j + 3 > 26)
-                                {
-                                    j = j + 3 - 26;
-
-                                }
-                                Console.Write(LISTA[j + entry]);
-                                break;
-                            }
+                            int nouvelIndex = (j + entry) % 26;
+                            if (nouvelIndex < 0) nouvelIndex += 26;
+                            Console.Write(LISTA[nouvelIndex]);
+                            break;
                         }
                     }
-                    break;
-
                 }
-                catch
-                {
-                    Console.Clear();
-                    Console.WriteLine("Mettez uniquement des chiffres pour la clé de décalage");
-                }
+                break;
             }
+            catch
+            {
+                Console.WriteLine("Erreur : Mettez uniquement des chiffres pour la clé.");
+            }
+        }
+        Console.WriteLine("\n\nAppuyez sur 'Enter' pour revenir au menu ou 'Esc' pour quitter.");
         }
     }
 }

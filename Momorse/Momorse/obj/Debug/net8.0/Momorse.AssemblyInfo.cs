@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Momorse")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+644a1fa098dcea17f8e7d6044eb482697197eafc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50d06a0d0ecdab17e619bd7c7ae8ea32c4e44d54")]
 [assembly: System.Reflection.AssemblyProductAttribute("Momorse")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Momorse")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
