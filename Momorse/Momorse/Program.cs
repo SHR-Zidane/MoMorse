@@ -12,9 +12,6 @@ namespace MoMorse
             int entryN = 0;
             ConsoleKeyInfo Enter;
             List<char> ENTRY = new List<char>();
-            string[] LISTM = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
-                "-.", "---", ".--.", "--.-", ".-.", "..." , "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "/"];
-            char[] LISTA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' '];
             List<string> ENTRYM = new List<string>();
             List<int> ints = new List<int>();
             List<int> octoints = new List<int>();
@@ -31,7 +28,7 @@ namespace MoMorse
                     if (Enter.Key == ConsoleKey.Enter)
                     {
                         Console.Clear();
-                        Morse(ENTRY, key, ENTRYM, LISTA, LISTM);
+                        Morse(ENTRY, ENTRYM);
                         while (true)
                         {
                             Enter = Console.ReadKey();
@@ -178,7 +175,7 @@ namespace MoMorse
                     if (Enter.Key == ConsoleKey.Enter)
                     {
                         Console.Clear();
-                        Caesar(LISTA, ENTRY, key, entryN);
+                        //Caesar(LISTA, ENTRY, key, entryN);
                         while (true)
                         {
                             Enter = Console.ReadKey();
@@ -199,49 +196,48 @@ namespace MoMorse
                 }
             }
         }
-        static void Morse(List<char> ENTRY, ConsoleKeyInfo key, List<string> ENTRYM, char[] LISTA, string[] LISTM)
+        static void Morse(List<char> ENTRY, List<string> ENTRYM)
         {
+            ENTRY.Clear();
+            ENTRYM.Clear();
+            
+            string[] LISTM = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
+                "-.", "---", ".--.", "--.-", ".-.", "..." , "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----",".----","..---","...--","....-",".....", "-....", "--...", "---..", "----.", "/"];
+            char[] LISTA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '];
+            Console.Clear();
             Console.WriteLine("=== Convertisseur de texte en code Morse ===");
-            Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
+            Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z, chiffres 0-9) :\n");
 
             while (true)
-            {
-                key = Console.ReadKey(true);
-
-                try
+            { 
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Enter && ENTRY.Count > 0)
                 {
-                    if (key.Key == ConsoleKey.Enter)
+                    break;
+                }
+                else if (key.Key == ConsoleKey.Backspace)
+                {
+                    if (ENTRY.Count > 0)
+                        ENTRY.RemoveAt(ENTRY.Count - 1);
+                }
+                else
+                {
+                    char c = char.ToUpper(key.KeyChar);
+                    if (char.IsLetterOrDigit(c) || c == ' ')
                     {
-                        break;
-                    }
-                    else if (key.Key == ConsoleKey.Backspace)
-                    {
-                        if (ENTRY.Count > 0)
-                            ENTRY.RemoveAt(ENTRY.Count - 1);
+                        ENTRY.Add(c);   
                     }
                     else
                     {
-                        char c = char.ToUpper(key.KeyChar);
-
-                        if (!char.IsLetter(c) && c != ' ')
-                        {
-                            Console.WriteLine("\nCaractère invalide (lettres A-Z seulement)");
-                            continue;
-                        }
-
-                        ENTRY.Add(c);
+                        Console.WriteLine("\nCaractère invalide (lettres A-Z ou chiffres 0-9 seulement)");
+                        continue;
                     }
-                    Console.Clear();
-                    Console.WriteLine("=== Convertisseur de texte en code Morse ===");
-                    Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z) :\n");
-
-                    for (int i = 0; i < ENTRY.Count; i++)
-                        Console.Write(ENTRY[i]);
                 }
-                catch
-                {
-                    Console.WriteLine("Erreur : veuillez écrire uniquement des mots.");
-                }
+                
+                Console.Clear();
+                Console.WriteLine("=== Convertisseur de texte en code Morse ===");
+                Console.WriteLine("Entrez un mot ou une phrase (sans accents, lettres A-Z, chiffres 0-9) :\n");
+                Console.Write(string.Join("", ENTRY));
             }
             for (int i = 0; i < ENTRY.Count; i++)
             {
@@ -254,11 +250,7 @@ namespace MoMorse
                 }
             }
             Console.WriteLine("\nRésultat en Morse : ");
-            for (int i = 0; i < ENTRYM.Count; i++)
-            {
-                Console.Write(ENTRYM[i]);
-                Console.Write(' ');
-            }
+            Console.WriteLine(string.Join(" ", ENTRYM));
 
             Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
         }
