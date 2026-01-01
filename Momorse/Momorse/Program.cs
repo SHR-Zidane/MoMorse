@@ -92,7 +92,6 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
-                                    Console.WriteLine(Binadec(Enter, ints, entryN, power, power2));
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -121,7 +120,7 @@ namespace MoMorse
                                 Enter = Console.ReadKey();
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
-                                    Binaoct(Binadec(Enter, ints, entryN, power, power2), octoints);
+                                    Binaoct(Binadec(ints), octoints);
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -256,6 +255,7 @@ namespace MoMorse
         }
         static void Decabin(ConsoleKeyInfo key, int entry, List<int> ints)
         {
+            ints.Clear();
             while (true)
             {
                 while (true)
@@ -285,62 +285,60 @@ namespace MoMorse
                 break;
             }
         }
-        static int Binadec(ConsoleKeyInfo Enter, List<int> ints, int entryN, int power, int power2)
+        static int Binadec(List<int> ints)
         {
+            int entryN = 0;
+            int power = 1;
+            ints.Clear();
+
             while (true)
             {
                 Console.WriteLine("\rEntrez un nombre binaire : ");
+                Console.WriteLine("Entrez un nombre binaire (0 ou 1) :");
                 for (int i = 0; i < ints.Count; i++)
                 {
                     Console.Write(ints[i]);
                 }
-                Enter = Console.ReadKey();
-                if (Enter.Key == ConsoleKey.Enter)
+
+                ConsoleKeyInfo Enter = Console.ReadKey(true);
+
+                if (Enter.Key == ConsoleKey.Enter && ints.Count > 0)
                 {
-                    for (int i = ints.Count - 1; i >= 0; i--)
-                    {
-                        entryN += ints[i] * power;
-                        power = 1;
-                        if (power2 < 2)
-                        {
-                            power2++;
-                        }
-                        else
-                        {
-                            power2 *= 2;
-                        }
-                        power *= 2 * power2;
-                    }
+                    Console.WriteLine();
                     break;
                 }
-                else if (Enter.Key == ConsoleKey.Backspace)
+                else if (Enter.Key == ConsoleKey.Backspace && ints.Count > 0)
                 {
-                    if (ints.Count == 0)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        ints.RemoveAt(ints.Count - 1);
-                    }
+                    ints.RemoveAt(ints.Count - 1);
                 }
-                else if (Enter.Key == ConsoleKey.D0 || Enter.Key == ConsoleKey.D1)
+                else if (Enter.Key == ConsoleKey.D0 || Enter.Key == ConsoleKey.NumPad0)
                 {
-                    ints.Add(Enter.Key - ConsoleKey.D0);
-                    Console.Clear();
+                    ints.Add(0);
                 }
-                else
+                else if (Enter.Key == ConsoleKey.D1 || Enter.Key == ConsoleKey.NumPad1)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Format incorrect");
-                    continue;
+                    ints.Add(1);
                 }
-
             }
-            Console.WriteLine();
-            return entryN;
 
+            try
+            {
+                for (int i = ints.Count - 1; i >= 0; i--)
+                {
+                    if (ints[i] == 1)
+                    {
+                        entryN += power;
+                    }
+                    power *= 2;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Erreur de calcul.");
+                return 0;
+            }
+            
+            return entryN;
         }
         static void Binaoct(int EntryD, List<int> ints)
         {
