@@ -27,6 +27,7 @@ namespace MoMorse
                     {
                         Console.Clear();
                         Morse(ENTRY, ENTRYM);
+                        //TEST MORSE : Nous sommes en 2025 : -. --- ..- ... / ... --- -- -- . ... / . -. / ..--- ----- ..--- .....
                         while (true)
                         {
                             Enter = Console.ReadKey();
@@ -62,6 +63,7 @@ namespace MoMorse
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
                                     Decabin(key, entryN, ints);
+                                    //TEST DECIMAL BINAIRE 3 EXEMPLES : 0 -> 0, 1 -> 1, 2214 -> 100010100110
                                     while (true)
                                     {
                                         Enter = Console.ReadKey();
@@ -91,6 +93,7 @@ namespace MoMorse
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
                                     Console.WriteLine(Binadec(ints));
+                                    //TEST BINAIRE DECIMAL 3 EXEMPLES : 0 -> 0, 1 -> 1, 1011101 -> 93
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -120,6 +123,7 @@ namespace MoMorse
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
                                     Binaoct(Binadec(ints), octoints);
+                                    //TEST BINAIRE OCTAL 3 EXEMPLES : 0 -> 0, 1 -> 1, 1011101 -> 135
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -145,6 +149,7 @@ namespace MoMorse
                                 if (Enter.Key == ConsoleKey.Enter)
                                 {
                                     Octabin(Enter, octoints);
+                                    //TEST OCTAL BINAIRE 3 EXEMPLES : 0 -> 0, 1 -> 1, 2214 -> 010010001100
                                     Console.WriteLine("\n\n Recommencer 'enter' ou quitter ? 'esc'");
                                     while (true)
                                     {
@@ -174,6 +179,7 @@ namespace MoMorse
                     {
                         Console.Clear();
                         Caesar(ENTRY, entryN);
+                        //TEST CESAR AVEC CLE 3 : DORMIR -> GRUPLU
                         while (true)
                         {
                             Enter = Console.ReadKey();
